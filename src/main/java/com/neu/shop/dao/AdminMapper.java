@@ -2,8 +2,11 @@ package com.neu.shop.dao;
 
 import com.neu.shop.pojo.Admin;
 import com.neu.shop.pojo.AdminExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface AdminMapper {
     long countByExample(AdminExample example);
@@ -29,4 +32,7 @@ public interface AdminMapper {
     int updateByPrimaryKeySelective(Admin record);
 
     int updateByPrimaryKey(Admin record);
+
+    @Select("select * from admin where adminName=#{email}")
+    Admin selectByEmail(String email);
 }

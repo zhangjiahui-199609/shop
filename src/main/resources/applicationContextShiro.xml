@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <description>Shiro与Spring整合</description>
+
+    <!--认证-->
+    <!--安全管理器-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!-- 引用自定义的realm -->
+        <property name="realm" ref="authRealm"/>
+        <!--在安全管理器中配置缓存管理器-->
+        <property name="cacheManager" ref="cacheManager"/>
+     </bean>
+
+    <!-- 自定义Realm域的编写 -->
+    <bean id="authRealm" class="com.neu.shop.shrio.AuthRealm">
+        <!-- 注入自定义的密码比较器 -->
+        <property name="credentialsMatcher" ref="customerCredentialsMatcher" ></property>
+    </bean>
+    <!-- 自定义的密码比较器 -->
+    <bean id="customerCredentialsMatcher" class="com.neu.shop.shrio.CustomerCredentialsMatcher"></bean>
+
+    <!--授权-->
+    <!-- filter-name这个名字的值来自于web.xml中filter的名字 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--安全管理器-->
+        <property name="securityManager" ref="securityManager"/>
+        <!--页面  -->
+        <!--没登陆用户（在shiro中没有这个安全数据）访问资源超标要到的页面-->
+        <property name="loginUrl" value="/adminLogin.jsp"></property>
+        <!--权限不足会跳转的页面-->
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"></property>
+
+       <!-- &lt;!&ndash;过滤的要放行访问的资源&ndash;&gt;
+        <property name="filterChainDefinitions">
+            &lt;!&ndash; /**代表下面的多级目录也过滤
+                匹配顺序：从上到下
+            &ndash;&gt;
+            <value>
+
+                &lt;!&ndash;配置具有了某些权限之后才能访问的资源
+                    瞬间去判断此认证用户是否具有该权限（realm的授权方法）
+                                        //没有：权限不足
+                                        // 有： 直接展开资源访问
+                &ndash;&gt;
+                /system/module/list.do = perms["SaaS管理"]
+                /company/list.do=perms["SaaS管理"]
+
+
+                &lt;!&ndash;配置没登陆就能访问的资源
+                    anon：匿名过滤器，不需要认证就可以访问的权限
+                &ndash;&gt;
+                /index.jsp = anon
+                /login.jsp = anon
+                /login* = anon   &lt;!&ndash;logins.jsp  *:单层结构 ！= login/a/login.jsp  &ndash;&gt;
+                /logout* = anon
+                /css/** = anon  &lt;!&ndash;**:多层结构 ==/css/a/b/1.css&ndash;&gt;
+                /shopimage/** = anon
+                /plugins/** = anon
+                /make/** = anon
+
+                &lt;!&ndash;登陆之后能访问到的资源
+                登录就是在 密码比较器返回了一个true的话，就存到这个shiro的一个空间里面了
+                    authc:认证权限
+                &ndash;&gt;
+                /** = authc   &lt;!&ndash;多层层级关系 /system/role/list.do&ndash;&gt;
+                /*.* = authc   &lt;!&ndash;/list.do&ndash;&gt;
+            </value>
+        </property>-->
+    </bean>
+
+
+    <!-- 开启对shiro注解支持 -->
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+
+
+    <!-- 生成代理，通过代理进行控制 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!--
+    缓存管理器是配置在安全管理器当中的  ：SecurityManager这个对象当中
+        第一种方式;创建内置的内存缓存管理器-->
+    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"></bean>
+
+
+    <!--第二种方式使用Redis和Shiro联合方式来存储
+    Redis的配置
+    <bean id="redisManager" class="org.crazycake.shiro.RedisManager">
+        <property name="host" value="127.0.0.1:6379"/>
+    </bean>
+   创建redis的缓存管理器
+    <bean id="cacheManager" class="org.crazycake.shiro.RedisCacheManager">
+        <property name="redisManager" ref="redisManager"/>
+    </bean>
+-->
+
+
+
+
+    <!--第三种方式  创建ehcache的缓存管理器:基于文件的缓存管理 需要加载配置文件，配置文件一定要在config文件夹里面
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+       注入ehcache的配置文件
+        <property name="cacheManagerConfigFile" value="classpath:config/ehcache-shiro.xml"/>
+    </bean>
+    -->
+
+</beans>

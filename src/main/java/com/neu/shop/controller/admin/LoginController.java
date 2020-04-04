@@ -2,6 +2,9 @@ package com.neu.shop.controller.admin;
 
 import com.neu.shop.pojo.Admin;
 import com.neu.shop.service.AdminService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +22,28 @@ public class LoginController {
 
     @RequestMapping("/login")
     public String adminLogin() {
-        return "adminLogin";
+        return "forward:/adminLogin.jsp";
     }
 
     @RequestMapping("/confirmLogin")
-    public String confirmLogin(Admin admin, Model model, HttpServletRequest request) {
-        Admin selectAdmin = adminService.selectByName(admin);
+    public String confirmLogin(String email,String password, Model model, HttpServletRequest request) {
+        try {
+//            调用Shrio的API获取对象
+            Subject subject = SecurityUtils.getSubject();
+//           创建令牌
+            UsernamePasswordToken uptoken = new UsernamePasswordToken(email, password);
+//            使用令牌进行登录-》realm
+            subject.login(uptoken);
+//            从安全数据中获取用户信息
+            Admin admin = (Admin) subject.getPrincipal();
+            request.getSession().setAttribute("admin",admin);
+            return "redirect:/shop/admin/user/show";
+        }catch (Exception e){
+            e.printStackTrace();
+            model.addAttribute("errorMsg","用户名或密码错误");
+            return "forward:/adminLogin.jsp";
+        }
+    /*    Admin selectAdmin = adminService.selectByName(admin);
         if (selectAdmin == null) {
             model.addAttribute("errorMsg", "用户名或密码错误");
             return "adminLogin";
@@ -32,14 +51,17 @@ public class LoginController {
             HttpSession session = request.getSession();
             session.setAttribute("admin", selectAdmin);
             return "redirect:/shop/admin/user/show";
-        }
+        }*/
     }
 
     @RequestMapping("/logout")
     public String adminLogout(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        session.removeAttribute("admin");
-        return "redirect:/admin/login";
+
+        /*HttpSession session = request.getSession();
+        session.removeAttribute("admin");*/
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();//登出
+        return "forward:/adminLogin.jsp";
     }
 
     /*@RequestMapping("/index")

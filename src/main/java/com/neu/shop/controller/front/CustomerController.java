@@ -52,6 +52,7 @@ public class CustomerController {
         else {
             Date RegTime=new Date();
             user.setRegtime(RegTime);
+            user.setPassword(UUID.randomUUID().toString());
             userService.insertSelective(user);
             return  "redirect:/login";
         }
