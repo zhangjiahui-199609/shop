@@ -63,23 +63,23 @@ public class AuthRealm extends AuthorizingRealm {
     @Override//授权
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 
-       /* //获取当前登录用户 获取安全数据中的user对象
+        //获取当前登录用户 获取安全数据中的user对象
         Admin user = (Admin) principalCollection.getPrimaryPrincipal();
         //从数据库中查询 根据用户查询模块
-        List<Module> list = moduleService.findMenuByDgree(user.getAdminid());
+//        List<Module> list = moduleService.findMenuByDgree(user.getAdminid());
 
         //构造方法的返回值
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
         HashSet set = new HashSet<>();
 
-        for (Module module : list) {
-            set.add(module.getName());
-        }
+//        for (Module module : list) {
+//            set.add(module.getName());
+//        }
+        set.add(user.getDgreeName());
         System.out.println(set);
         //这个就是给这个管理用户权限了
         info.setStringPermissions(set);
-*/
-        return null;
+        return info;
     }
 }

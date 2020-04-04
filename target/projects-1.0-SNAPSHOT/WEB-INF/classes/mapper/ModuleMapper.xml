@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neu.shop.dao.ModuleMapper">
+
+    <select id="findModuleByAdminId" parameterType="com.neu.shop.pojo.Module" resultType="com.neu.shop.pojo.Module">
+        select Id,moduleName from module m ,admin a where m.id=a.moduleId and a.adminId=#{adminId}
+    </select>
+
+</mapper>
