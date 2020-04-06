@@ -2,7 +2,6 @@ package com.neu.shop.pojo;
 
 import lombok.Data;
 
-@Data
 public class Address {
     private Integer addressid;
 
@@ -20,5 +19,67 @@ public class Address {
 
     private String contel;
 
+    public Integer getAddressid() {
+        return addressid;
+    }
 
+    public void setAddressid(Integer addressid) {
+        this.addressid = addressid;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public String getDetailaddr() {
+        return detailaddr;
+    }
+
+    public void setDetailaddr(String detailaddr) {
+        this.detailaddr = detailaddr;
+    }
+
+    public String getConname() {
+        return conname;
+    }
+
+    public void setConname(String conname) {
+        this.conname = conname;
+    }
+
+    public String getContel() {
+        return contel;
+    }
+
+    public void setContel(String contel) {
+        this.contel = contel;
+    }
 }

@@ -39,7 +39,7 @@ public class CustomerController {
     }
 
     @RequestMapping("/registerresult")
-    public String registerResult(User user,Model registerResult){
+    public String registerResult(User user, Model registerResult){
         List<User> userList=new ArrayList<>();
         UserExample userExample=new UserExample();
         userExample.or().andUsernameLike(user.getUsername());
@@ -102,7 +102,7 @@ public class CustomerController {
 
     @RequestMapping("/shop/saveInfo")
     @ResponseBody
-    public Msg saveInfo(String name, String email, String telephone,HttpServletRequest request){
+    public Msg saveInfo(String name, String email, String telephone, HttpServletRequest request){
         HttpSession session=request.getSession();
         UserExample userExample=new UserExample();
         User user,updateUser=new User();
