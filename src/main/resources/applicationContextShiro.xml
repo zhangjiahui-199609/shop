@@ -54,7 +54,7 @@
                                         // 有： 直接展开资源访问
                 -->
                 /shop/admin/goods/show = perms["管理员"]
-
+                /shop/admin/user/show=perms["管理员"]
 
 
                 <!--配置没登陆就能访问的资源

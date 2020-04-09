@@ -40,7 +40,7 @@
             <div class="row">
                 <nav class="templatemo-top-nav col-lg-12 col-md-12">
                     <ul class="text-uppercase">
-                        <li><a href="${pageContext.request.contextPath}/shop/admin/chat" class="active">聊天</a></li>
+                        <li><a href="${pageContext.request.contextPath}/shop/admin/chat" class="active">客服</a></li>
                     </ul>
                 </nav>
             </div>

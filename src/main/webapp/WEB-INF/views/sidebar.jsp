@@ -10,8 +10,8 @@
     </div>
     <nav class="templatemo-left-nav">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/shop/admin/user/show"><i class="fa fa-user fa-fw"></i>用户管理</a></li>
             <c:if test="${sessionScope.admin.dgreeName=='管理员'}">
+            <li><a href="${pageContext.request.contextPath}/shop/admin/user/show"><i class="fa fa-user fa-fw"></i>用户管理</a></li>
             <li><a href="${pageContext.request.contextPath}/shop/admin/goods/show"><i class="fa fa-bar-chart fa-fw"></i>商品管理</a></li>
             </c:if>
             <li><a href="${pageContext.request.contextPath}/admin/order/send"><i class="fa fa-users fa-fw"></i>订单管理</a></li>
