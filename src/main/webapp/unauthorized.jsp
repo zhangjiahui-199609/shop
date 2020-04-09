@@ -32,26 +32,49 @@
 
     <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
-
+/
     <style>
         .show-span {
             border: none !important;
         }
+        #frameContent{
+        }
+       /* h1{
+            font-size: 50px;
+            color: rgba(193,4,0,0.6);
+            text-align: center;
+            margin-bottom: 30px;
+        }*/
+        h3{
+            margin-top: 30px;
+            font-size: 500%;
+            color:rgba(182,177,170,0.8);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        p{
+            color: rgba(218,212,215,0.6);
+            font-size: medium;
+            text-align: center;
+        }
+        i{
+            color: #f3f000;
+        }
     </style>
 </head>
 <body>
-<div id="frameContent" class="content-wrapper" style="margin-left:0px;">
+<div id="frameContent" class="content-wrapper" style="margin-left:0px;margin-top:30px; ">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+ <%--   <section class="content-header">
         <h1>
             权限不足页面
         </h1>
-    </section>
+    </section>--%>
 
     <!-- Main content -->
     <section class="content">
         <div class="error-page">
-           <div class="error-content" style="margin-left:0">
+           <div class="error-content" style="margin-top:150px;margin-left: 0;">
                <h3><i class="fa fa-warning text-yellow"></i> Oops! 没有访问权限.</h3>
 
                <p>

@@ -1,6 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
+<style>
+    .logo-word{
+        font-size: 28px;
+        font-weight: bold;
+        padding-top: 6px;
+        margin-left: 50px;
+        vertical-align: middle;
+    }
+</style>
 <div class="row">
     <div class="col-md-4" role="navigation">
         <!-- <h1 style="font-size: 20px;margin-top: 9px">东大咸鱼</h1> -->
@@ -8,7 +17,7 @@
         <ul class="nav nav-pills">
             <c:if test="${empty sessionScope.user}">
                 <li><a href="${pageContext.request.contextPath}/login" style="color: #F22E00">请登录</a></li>
-                <li><a href="${pageContext.request.contextPath}/register">注册</a></li>
+                <li><a href="${pageContext.request.contextPath}/register" style="color: #337ab7;">注册</a></li>
             </c:if>
             <c:if test="${!empty sessionScope.user}">
                 <li class="info-a">
@@ -30,14 +39,14 @@
     </div>
     <div class="col-md-8">
         <ul class="nav nav-pills pull-right">
-            <li><a href="${pageContext.request.contextPath}/chat"> <i
+            <li><a href="${pageContext.request.contextPath}/chat?sendto=${sessionScope.user.userid}" style="color: #337ab7;"> <i
                     class="fa fa-comment"></i> 消息
             </a></li>
-            <li><a href="${pageContext.request.contextPath}/showcart"> <i
+            <li><a href="${pageContext.request.contextPath}/showcart" style="color: #337ab7;"> <i
                     class="fa fa-shopping-cart" style="color: #F22E00"></i>
                 购物车
             </a></li>
-            <li><a href="${pageContext.request.contextPath}/info/favorite"> <i
+            <li><a href="${pageContext.request.contextPath}/info/favorite" style="color: #337ab7;"> <i
                     class="fa fa-star"></i> 收藏夹
             </a></li>
         </ul>
@@ -56,13 +65,13 @@
                         class="icon-bar"></span> <span class="icon-bar"></span> <span
                         class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/main"><!-- <img alt="Brand" style="display: inline-block;" src="./image/tao.jpg" width="20" height="20"> --><span class="logo-word">淘身边</span></a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/main"><!-- <img alt="Brand" style="display: inline-block;" src="./image/tao.jpg" width="20" height="20"> --><span class="logo-word" style="text-align: left;font-size: x-large;">发烧外设</span></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse"
                  id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" style="margin-left: 40px;">
                     <li><a class="a-color" href="${pageContext.request.contextPath}/main">首页</a></li>
                     <li><a class="a-color" href="${pageContext.request.contextPath}/information">个人信息</a></li>
                     <li class="dropdown"><a class="a-color" href="${pageContext.request.contextPath}/info/list"
@@ -76,7 +85,7 @@
                             <li><a href="${pageContext.request.contextPath}/chatrobot">小淘</a></li>
                         </ul></li>
                 </ul>
-
+                <iframe allowtransparency="true" frameborder="0" width="380" height="40" scrolling="no"  style="font-size: 25px; padding-top: 6px;padding-left: 200px;" src="//tianqi.2345.com/plugin/widget/index.htm?s=3&z=2&t=0&v=0&d=1&bd=0&k=000000&f=ffffff&ltf=00ffff&htf=ff0000&q=1&e=1&a=1&c=54511&w=180&h=36&align=center"></iframe>
                 <form class="navbar-form navbar-right" role="search" method="get" action="${pageContext.request.contextPath}/search">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search" name="keyword">

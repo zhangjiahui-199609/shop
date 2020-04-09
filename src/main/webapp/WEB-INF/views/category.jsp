@@ -13,7 +13,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>淘一淘类别</title>
+    <title>发烧外设类别</title>
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/css/bootstrap.min.css">
@@ -33,6 +33,13 @@
         }
         .page-info {
             padding: 35px 35px 35px 55px;
+        }
+
+        .xiangqing{
+            width: 320px;
+            height: 320px;
+            margin-left: 6px;
+            margin-right: 6px;
         }
     </style>
 </head>
@@ -55,14 +62,15 @@
                     <ul>
                         <c:forEach items="${pageInfo.list}" var="goods">
                             <li class="data-item-li">
-                                <div class="to-big">
-                                    <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}"> <img src="/shopimage/${goods.imagePaths[0].path}" width="260px" height="260px" alt=""/>
+                                <div class="xiangqing">
+                                <div class="to-big" style="vertical-align: middle; text-align: center;" >
+                                    <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}"> <img src="/shopimage/${goods.imagePaths[0].path}" width="250px" height="250px" alt=""/>
                                     </a>
                                 </div>
-                                <p class="text-right">
+                                <p class="text-right" style=white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:315px;text-align:left;>
                                     <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}">${goods.goodsname}</a>
                                 </p>
-                                <div class="text-right">
+                                <div class="text-right" style="text-align:left">
                                     <b>￥${goods.price}</b>
                                 </div>
                                 <div>
@@ -79,6 +87,7 @@
                                                 style="display: none;"></button>
                                     </c:if>
                                     <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
+                                </div>
                                 </div>
                             </li>
                         </c:forEach>

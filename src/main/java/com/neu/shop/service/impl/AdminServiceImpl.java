@@ -26,4 +26,9 @@ public class AdminServiceImpl implements AdminService {
         Admin admin=adminMapper.selectByEmail(email);
         return admin;
     }
+
+    @Override
+    public Admin selectByPrimaryKey(Integer sendto) {
+        return adminMapper.selectByPrimaryKey(sendto);
+    }
 }

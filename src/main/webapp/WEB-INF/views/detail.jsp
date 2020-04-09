@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>淘一淘-${goodsInfo['goods'].goodsname}</title>
+    <title>发烧外设-${goodsInfo['goods'].goodsname}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -35,7 +35,7 @@
                 "boxid": "showbox",
                 "sumid": "showsum",
                 "boxw": 400,
-                "boxh": 550,
+                "boxh": 400,
                 "sumw": 60, //列表每个宽度,该版本中请把宽高填写成一样
                 "sumh": 60, //列表每个高度,该版本中请把宽高填写成一样
                 "sumi": 7, //列表间隔
@@ -157,6 +157,7 @@
             display: block !important;
             padding:5px;
         }
+
     </style>
 
 </head>
@@ -176,8 +177,8 @@
             </ul>
         </div>
         <div class="row">
-            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                <div class="shopdetails">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" >
+                <div class="shopdetails" >
                     <div id="leftbox">
                         <div id="showbox">
                             <c:forEach items="${goodsInfo['image']}" var="path">
@@ -327,7 +328,9 @@
                                     <div class="tb_desc">
                                         <h2>商品描述</h2>
                                         <p>${goodsInfo['goods'].description}</p>
-                                        <img src="/shopimage/${goodsInfo['goods'].desimgpath}"/>
+                                        <div class="pic" style="vertical-align: middle; text-align: center;">
+                                        <img src="/shopimage/${goodsInfo['goods'].desimgpath}" style="width: 100%;height: 100%;"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -1,12 +1,14 @@
 package com.neu.shop.controller.front;
 
 import com.neu.shop.pojo.*;
+import com.neu.shop.service.AdminService;
 import com.neu.shop.service.ChatService;
 import com.neu.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -23,9 +25,11 @@ public class ChatController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    AdminService adminService;
 
     @RequestMapping("/chat")
-    public String showChat(HttpSession session, Model model, Integer sendto) {
+    public String showChat(HttpSession session, Model model, @RequestParam(name = "sendto",required = false) Integer sendto) {
         User loginuser = (User) session.getAttribute("user");
         if (loginuser == null) {
             return "redirect:/login";
@@ -70,7 +74,7 @@ public class ChatController {
     }
 
 
-    @RequestMapping("/chatto")
+    @RequestMapping("shop/chatto")
     @ResponseBody
     public Msg getChatTo(HttpSession session, Model model, Integer sendto) {
         //查询历史消息聊天对象
@@ -112,7 +116,7 @@ public class ChatController {
     }
 
 
-    @RequestMapping("/getMessage")
+    @RequestMapping("shop/getMessage")
     @ResponseBody
     public Msg getMessageInfo(Integer senduser, Integer receiveuser, HttpSession session) {
 
@@ -130,7 +134,7 @@ public class ChatController {
         return Msg.success("获取消息成功").add("message", chatList);
     }
 
-    @RequestMapping("/admin/chat")
+    @RequestMapping("shop/admin/chat")
     public String frontChat(Integer sendto, Model model, HttpSession session) {
 
         Admin adminuser = (Admin) session.getAttribute("admin");

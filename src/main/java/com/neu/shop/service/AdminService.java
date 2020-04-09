@@ -7,4 +7,6 @@ public interface AdminService {
     public Admin selectByName(Admin admin);
 
     Admin findByEmail(String email);
+
+    Admin selectByPrimaryKey(Integer sendto);
 }

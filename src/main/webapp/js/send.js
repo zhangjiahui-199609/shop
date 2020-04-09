@@ -10,7 +10,7 @@ $(document).ready(function () {
     reGetChatUser($("#receiveId").text());
 
     clientID = $('#sendId').text();
-    client = new Messaging.Client('127.0.0.1', 61614, clientID);
+    client = new Messaging.Client('127.0.0.1',61614, clientID);
     client.onConnectionLost = function () {
         alert("连接已断开");
     };
@@ -165,7 +165,7 @@ function userListClick() {
 
     //发异步请求查聊天消息
     $.ajax({
-        url: "/shop/getMessage/", //把表单数据发送到ajax.jsp
+        url: "/shop/getMessage/", //把表单数据发送
         type: "POST",
         data: {
             senduser: $("#sendId").text(),

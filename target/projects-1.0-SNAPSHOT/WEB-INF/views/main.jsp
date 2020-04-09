@@ -27,6 +27,25 @@
         });*/
     </script>
 </head>
+<style>
+    #digit:hover{
+        font-size: 15px;
+        color: #f3b300;
+
+    }
+    #book:hover{
+        font-size: 15px;
+        color: #f3b300;
+
+    }
+    .xiangqing{
+        width: 320px;
+        height: 320px;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+</style>
 <body>
 <div id="main" class="container">
     <!-- <div id="header">
@@ -45,178 +64,13 @@
     </div> -->
     <div id="header">
         <%@ include file="header.jsp" %>
-        <%--<%
-            String userId = (String) session.getAttribute("userId");
-            //out.println(userId);
-            String username = (String) session.getAttribute("username");
-            if (username == null) {
-        %>
-        <div class="row">
-            <div class="col-md-4" role="navigation">
-                <!-- <h1 style="font-size: 20px;margin-top: 9px">东大咸鱼</h1> -->
 
-                <ul class="nav nav-pills">
-
-                    <li><a href="./login.jsp" style="color: #F22E00">请登录</a></li>
-
-
-                    <li><a href="./register.jsp">注册</a></li>
-                </ul>
-            </div>
-            <div class="col-md-8">
-                <ul class="nav nav-pills pull-right">
-                    <li><a href="./login.jsp"> <span
-                            class="glyphicon glyphicon-comment"></span> 消息
-                    </a></li>
-                    <li><a href="./login.jsp"> <span
-                            class="glyphicon glyphicon-shopping-cart" style="color: #F22E00"></span>
-                        购物车
-                    </a></li>
-                    <li><a href="./login.jsp"> <span
-                            class="glyphicon glyphicon-star"></span> 收藏夹
-                    </a></li>
-                </ul>
-            </div>
-        </div>
-        <div id="header-nav">
-            <nav class="navbar navbar-default" id="header-nav-middle">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed"
-                                data-toggle="collapse"
-                                data-target="#bs-example-navbar-collapse-1"
-                                aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span> <span
-                                class="icon-bar"></span> <span class="icon-bar"></span> <span
-                                class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="./index.jsp"><!-- <img alt="Brand" style="display: inline-block;" src="./image/tao.jpg" width="20" height="20"> --><span class="logo-word">淘身边</span></a>
-                    </div>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse"
-                         id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li><a class="a-color" href="./index.jsp">首页</a></li>
-                            <li><a class="a-color" href="./login.jsp">发布闲置</a></li>
-                            <li class="dropdown"><a class="a-color" href="./login.jsp"
-                                                    class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                                    aria-haspopup="true" aria-expanded="false">我的闲置 <span
-                                    class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="login.jsp">出售中</a></li>
-                                    <li><a href="login.jsp">交易中</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="./login.jsp">新消息</a></li>
-                                </ul></li>
-                        </ul>
-
-                        <form class="navbar-form navbar-right" role="search" method="get" action="./searchResult.jsp">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search" name="keyword">
-                            </div>
-                            <button type="submit" class="btn btn-default">
-                                <span class="glyphicon glyphicon-search" aria-label="搜索"></span>
-                            </button>
-                        </form>
-                    </div>
-                    <!-- /.navbar-collapse -->
-                </div>
-                <!-- /.container-fluid -->
-            </nav>
-        </div>
-        <%
-        } else {
-        %>
-        <div class="row">
-            <div class="col-md-4" role="navigation">
-                <!-- <h1 style="font-size: 20px;margin-top: 9px">东大咸鱼</h1> -->
-
-                <ul class="nav nav-pills">
-                    <li class="info-a"><a href="./info.jsp"
-                                          style="color: #F22E00"><%=username%><span class="glyphicon glyphicon-triangle-bottom" style="font-size: 5px;margin-left: 7px;" aria-hidden="true"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="./info.jsp">账户管理</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="./login.jsp" class="login-out">退出登录</a></li>
-
-                        </ul></li>
-                    <li><a href="register.jsp">注册</a></li>
-                </ul>
-            </div>
-            <div class="col-md-8">
-                <ul class="nav nav-pills pull-right">
-                    <li><a href="./chat.jsp"> <span
-                            class="glyphicon glyphicon-comment"></span> 消息
-                    </a></li>
-                    <li><a href="./shopcart.jsp"> <span
-                            class="glyphicon glyphicon-shopping-cart" style="color: #F22E00"></span>
-                        购物车
-                    </a></li>
-                    <li><a href="./favorite.jsp"> <span
-                            class="glyphicon glyphicon-star"></span> 收藏夹
-                    </a></li>
-                </ul>
-            </div>
-        </div>
-        <div id="header-nav">
-            <nav class="navbar navbar-default" id="&lt;%&ndash;header-nav-middle&ndash;%&gt;">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed"
-                                data-toggle="collapse"
-                                data-target="#bs-example-navbar-collapse-1"
-                                aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span> <span
-                                class="icon-bar"></span> <span class="icon-bar"></span> <span
-                                class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="./index.jsp"><span class="logo-word">淘身边</span></a>
-                    </div>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse"
-                         &lt;%&ndash;id="bs-example-navbar-collapse-1"&ndash;%&gt;>
-                        <ul class="nav navbar-nav">
-                            <li><a class="a-color" href="./index.jsp">首页</a></li>
-                            <li><a class="a-color" href="./release.jsp">发布闲置</a></li>
-                            <li class="dropdown"><a class="a-color" href="./info.jsp"
-                                                    class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                                    aria-haspopup="true" aria-expanded="false">我的闲置 <span
-                                    class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="info.jsp">出售中</a></li>
-                                    <li><a href="info.jsp">交易中</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="./chat.jsp">新消息</a></li>
-                                </ul></li>
-                        </ul>
-
-                        <form class="navbar-form navbar-right" role="search" method="get" action="./searchResult.jsp">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search" name="keyword">
-                            </div>
-                            <button type="submit" class="btn btn-default">
-                                <span class="glyphicon glyphicon-search" aria-label="搜索"></span>
-                            </button>
-                        </form>
-                    </div>
-                    <!-- /.navbar-collapse -->
-                </div>
-                <!-- /.container-fluid -->
-            </nav>
-        </div>
-        <%
-            }
-        %>--%>
 
         <div class="header-bottom">
             <div class="sort">
                 <div class="sort-channel">
                     <ul class="sort-channel-list list-group">
-                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/category?cate=数码">数码</a>
+                        <li class="list-group-item" ><a id="digit" href="${pageContext.request.contextPath}/category?cate=数码">数码</a>
                             <div class="sort-detail">
                                 <dl class="dl-hor">
                                     <dt>
@@ -298,7 +152,7 @@
                                 </dl>
                             </div>
                         </li>
-                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/category?cate=闲置书籍">书籍</a>
+                        <li class="list-group-item" ><a id="book" href="${pageContext.request.contextPath}/category?cate=闲置书籍">书籍</a>
                             <div class="sort-detail">
                                 <dl class="dl-hor">
                                     <dt>
@@ -546,9 +400,9 @@
                 </div> -->
             </div>
             <div id="mycarousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
+                <div class="carousel-inner" style="height: 298px;width: 915px;">
                     <div class="item active">
-                        <img src="${pageContext.request.contextPath}/image/4.jpg" alt="">
+                        <img  src="${pageContext.request.contextPath}/image/4.jpg" alt="">
                     </div>
 
                     <div class="item">
@@ -559,6 +413,8 @@
                     </div>
                     <div class="item">
                         <img src="${pageContext.request.contextPath}/image/6.jpg" alt="">
+                    </div> <div class="item">
+                        <img src="${pageContext.request.contextPath}/image/7.jpg" alt="">
                     </div>
                 </div>
 
@@ -567,6 +423,7 @@
                     <li data-target="#mycarousel" data-slide-to="1"></li>
                     <li data-target="#mycarousel" data-slide-to="2"></li>
                     <li data-target="#mycarousel" data-slide-to="3"></li>
+                    <li data-target="#mycarousel" data-slide-to="4"></li>
                 </ol>
 
                 <a class="left carousel-control" href="#mycarousel" role="button"
@@ -592,20 +449,21 @@
                 </div>
 
                 <div class="bd">
-                    <div class="data">
+                    <div class="data" >
                         <ul>
                             <c:forEach items="${digGoods}" var="goods">
-                                <li class="data-item-li">
-                                    <div class="to-big">
+                                <li class="data-item-li" >
+                                    <div class="xiangqing">
+                                    <div class="to-big" style="vertical-align: middle; text-align: center;" >
                                         <a href="${pageContext.request.contextPath}/shop/detail?goodsid=${goods.goodsid}">
                                             <img src="${pageContext.request.contextPath}/shopimage/${goods.imagePaths[0].path}" alt=""
-                                                        width="200" height="200"/>
+                                                        width="250" height="250"/>
                                         </a>
                                     </div>
-                                    <p class="text-right">
-                                        <a href="${pageContext.request.contextPath}/shop/detail?goodsid=${goods.goodsid}">${goods.goodsname}</a>
+                                    <p class="text-right" style=white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:315px;text-align:left;>
+                                        <a href="${pageContext.request.contextPath}/shop/detail?goodsid=${goods.goodsid}" >${goods.goodsname}</a>
                                     </p>
-                                    <div class="text-right">
+                                    <div class="text-right" style="text-align:left">
                                         <b>￥${goods.price}</b>
                                     </div>
                                     <div>
@@ -622,6 +480,7 @@
                                                     style="display: none;"></button>
                                         </c:if>
                                         <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
+                                    </div>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -642,20 +501,21 @@
                 </div>
 
                 <div class="bd">
-                    <div class="data">
+                    <div class="data" >
                         <ul>
                             <c:forEach items="${houseGoods}" var="housegoods">
-                                <li class="data-item-li">
-                                    <div class="to-big">
-                                        <a href="${pageContext.request.contextPath}/shop/detail?goodsid=${housegoods.goodsid}"> <img
-                                                src="/shopimage/${housegoods.imagePaths[0].path}" alt=""
-                                                width="200" height="200">
+                                <li class="data-item-li" >
+                                    <div class="xiangqing">
+                                    <div class="to-big" style="vertical-align: middle; text-align: center;" >
+                                        <a href="${pageContext.request.contextPath}/shop/detail?goodsid=${housegoods.goodsid}" > <img
+                                                src="/shopimage/${housegoods.imagePaths[0].path}"  alt=""
+                                                width="250" height="250">
                                         </a>
                                     </div>
-                                    <p class="text-right">
+                                    <p class="text-right" style=white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:315px;text-align:left;>
                                         <a href="${pageContext.request.contextPath}/shop/detail?goodsid=${housegoods.goodsid}">${housegoods.goodsname}</a>
                                     </p>
-                                    <div class="text-right">
+                                    <div class="text-right" style="text-align:left">
                                         <b>￥${housegoods.price}</b>
                                     </div>
                                     <div>
@@ -672,6 +532,7 @@
                                                     style="display: none;"></button>
                                         </c:if>
                                         <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
+                                    </div>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -696,16 +557,17 @@
                         <ul>
                             <c:forEach items="${colGoods}" var="colgoods">
                                 <li class="data-item-li">
-                                    <div class="to-big">
-                                        <a href="${pageContext.request.contextPath}/shop/detail?goodsid=${colgoods.goodsid}"> <img
+                                    <div class="xiangqing">
+                                    <div class="to-big" style="vertical-align: middle; text-align: center;" >
+                                        <a href="${pageContext.request.contextPath}/shop/detail?goodsid=${colgoods.goodsid}" > <img
                                                 src="/shopimage/${colgoods.imagePaths[0].path}" alt=""
-                                                width="200" height="200">
+                                                width="250" height="250">
                                         </a>
                                     </div>
-                                    <p class="text-right">
+                                    <p class="text-right" style=white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:315px;text-align:left;>
                                         <a href="${pageContext.request.contextPath}/shop/detail?goodsid=${colgoods.goodsid}">${colgoods.goodsname}</a>
                                     </p>
-                                    <div class="text-right">
+                                    <div class="text-right" style="text-align:left">
                                         <b>￥${colgoods.price}</b>
                                     </div>
                                     <div>
@@ -722,6 +584,7 @@
                                                     style="display: none;"></button>
                                         </c:if>
                                         <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
+                                    </div>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -740,21 +603,22 @@
                     <hr>
                 </div>
 
-                <div class="bd">
-                    <div class="data">
+                <div class="bd" >
+                    <div class="data" style="vertical-align: middle; text-align: center;" >
                         <ul>
                             <c:forEach items="${bookGoods}" var="bookgoods">
-                                <li class="data-item-li">
+                                <li class="data-item-li" >
+                                    <div class="xiangqing">
                                     <div class="to-big">
-                                        <a href="${pageContext.request.contextPath}/shop/detail?goodsid=${bookgoods.goodsid}"> <img
+                                        <a href="${pageContext.request.contextPath}/shop/detail?goodsid=${bookgoods.goodsid}" > <img
                                                 src="/shopimage/${bookgoods.imagePaths[0].path}" alt=""
-                                                width="200" height="200">
+                                                width="250" height="250">
                                         </a>
                                     </div>
-                                    <p class="text-right">
+                                    <p class="text-right" style=white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:315px;text-align:left;>
                                         <a href="${pageContext.request.contextPath}/shop/detail?goodsid=${bookgoods.goodsid}">${bookgoods.goodsname}</a>
                                     </p>
-                                    <div class="text-right">
+                                    <div class="text-right" style="text-align:left">
                                         <b>￥${bookgoods.price}</b>
                                     </div>
                                     <div>
@@ -772,6 +636,7 @@
                                         </c:if>
                                         <!-- <button class="like-button1 glyphicon glyphicon-heart-empty btn btn-default "></button> -->
                                     </div>
+                                    </div>
                                 </li>
                             </c:forEach>
 
@@ -781,6 +646,15 @@
                 </div>
             </div>
         </c:if>
+    </div>
+    <div class="foot" style="text-align: center;">
+        <ul style="height: 50px;padding-top:5px;font-size: 18px;font-weight: lighter;background-color: rgba(0,0,0,0.9);border-radius:6px;color: rgba(255,255,255,0.8);">
+            <p style="width: 100%;height: 45px;display: block;line-height: 45px;text-align: center;">技术支持&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阿里云提供计算服务&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2020-04</p>
+        </ul>
+
+
+
+        </ul>
     </div>
 </div>
 </body>

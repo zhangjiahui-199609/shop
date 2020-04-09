@@ -124,9 +124,10 @@
 }
 
 .data>ul>li {
+	text-align: center;
 	list-style: none;
 	float: left;
-	margin: 2px 9px;
+	margin: 6px 15px 6px 15px;
 	position: relative;
 }
 
@@ -199,12 +200,12 @@ div.text-right {
 }
 
 .navbar-nav>li>a:hover{
-	color: #e83038 !important;
+	color: #f3b300 !important;
 }
 
 .logo-word {
 	font-family:chiller;
-	font-size:25px;
+	font-size:23px;
 	color:#dad5d5 !important;
 }
 

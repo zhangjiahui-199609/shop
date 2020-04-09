@@ -18,7 +18,7 @@ TABLE OF CONTENT
 * {	font-family: 'Open Sans', sans-serif; }
 body {	font-size: 13px; }
 body, .templatemo-left-nav { background: #1f2124; }
-h1, h2, h3 { margin: 0; }
+h1, h2, h3 { margin: 0;font-size:200px; }
 h2 { font-size: 1.6em; }
 h3 {
 	color: #7f7f7f;
